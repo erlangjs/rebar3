@@ -13,7 +13,13 @@
   },
   "author": "Robin Röper <rr@linux.com>",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
+    "auto-changelog": "^1.16.2",
+    "gh-release": "^3.5.0",
     "shelljs": "^0.8.4"
+  },
+  "scripts": {
+    "prepublishOnly": "git push --follow-tags && gh-release -y",
+    "version": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md"
   }
 }
