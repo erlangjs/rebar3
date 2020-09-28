@@ -1,0 +1,43 @@
+
+name: master
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: build-api
+    runs-on: ubuntu-latest
+    env:
+      CONFIGURATION: prod
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        
+      - name: Initialize Submodules
+        run: git submodule update --init
+      
+      - name: Use Node.js ${{ env.node_version }}
+        uses: actions/setup-node@v2.1.1
+        with:
+          node-version: ${{ env.node_version }}
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Install Packages
+        run: npm i
+        
+      - name: Build
+        run: npm run build
+
+#      - name: Test
+#        run: npm run test
+
+      - name: npm bump
+        uses: bcomnes/npm-bump@v2.0.1
+        with:
+          git_email: ${{ secrets.GIT_EMAIL }}
+          git_username: ${{ secrets.GIT_USERNAME }}
+          newversion: ${{ github.event.inputs.newversion }}
+          push_version_commit: true
+          npm_token: ${{ secrets.NPM_TOKEN }}
