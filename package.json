@@ -6,7 +6,7 @@
   "scripts": {
     "build": "./build.sh",
     "prepublishOnly": "git push --follow-tags",
-    "version": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md"
+    "version": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
