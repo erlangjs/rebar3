@@ -1,11 +1,11 @@
 {
   "name": "rebar3",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "./build.sh",
-    "prepublishOnly": "git push --follow-tags",
+    "prepublishOnly": "git push --follow-tags && gh-release -y",
     "version": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
