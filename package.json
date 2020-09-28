@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "./build.sh",
+    "prepublishOnly": "git push --follow-tags",
+    "version": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md"
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -16,9 +18,5 @@
     "auto-changelog": "^1.16.2",
     "gh-release": "^3.5.0",
     "shelljs": "^0.8.4"
-  },
-  "scripts": {
-    "prepublishOnly": "git push --follow-tags && gh-release -y",
-    "version": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md"
   }
 }
