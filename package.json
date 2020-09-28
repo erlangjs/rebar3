@@ -4,8 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run build",
+    "build": "./build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "bin": {
+    "rebar3": "bin/rebar3.js"
+  },
+  "author": "Robin Röper <rr@linux.com>",
+  "license": "ISC",
+  "dependencies": {
+    "shelljs": "^0.8.4"
+  }
 }
