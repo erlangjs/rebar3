@@ -1,8 +1,9 @@
-#!bin/bash
+#!/bin/bash
+set -e
+REBAR="rebar3"
+cd $REBAR
 
-$rebar_home = rebar3
+./bootstrap
+./rebar3 local install
 
-./${rebar_home}/bootstrap
-./${rebar_home}/rebar3 local install
-
-echo "Installed rebar3!"
+echo "📦✨ Installed rebar3!"
