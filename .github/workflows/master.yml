@@ -59,6 +59,14 @@ jobs:
           
       - name: Commit Changes
         run: git commit -m "Bumped Version to $(npm run version --silent)"
+        
+      - name: Publish Version
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+          npm publish
+          
           
       - name: Publish Version
         uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc
