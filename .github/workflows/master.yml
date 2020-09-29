@@ -20,6 +20,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         
+      - name: Extract Branch Name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      
+      - name: Checkout "${{ steps.extract_branch.outputs.branch }}"
+        
       - name: Initialize Submodules
         run: git submodule update --init
         
@@ -46,35 +53,23 @@ jobs:
       - name: Bump Version ${{ github.event.inputs.newversion }}
         run: npm version ${{ github.event.inputs.newversion }}
   
-      - name: Create Branch release-${{ github.event.inputs.newversion }}
+      - name: Create Branch
         run: git checkout -b release-$(npm run version --silent)
-      
-#      - name: Tag Version
-#        run: git tag -a v$(npm run version --silent) -m "Version $(npm run version --silent)"
         
       - name: Create Changelog
         run: |
           npm run changelog
           git add CHANGELOG.md
-          
+
       - name: Commit Changes
         run: git commit -m "Bumped Version to $(npm run version --silent)"
         
+      - name: Tag Version
+        run: git tag -a v$(npm run version --silent) -m "Version $(npm run version --silent)"
+
       - name: Publish Version
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
           npm publish
-          
-          
-      - name: Publish Version
-        uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc
-        with:
-          tag_name: "v%s"
-          tag_message: "v%s"
-          commit_pattern: "^Release (\\S+)"
-          workspace: "."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
