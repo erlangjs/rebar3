@@ -48,6 +48,17 @@ jobs:
   
       - name: Create Branch release-${{ github.event.inputs.newversion }}
         run: git checkout -b release-$(npm run version --silent)
+      
+#      - name: Tag Version
+#        run: git tag -a v$(npm run version --silent) -m "Version $(npm run version --silent)"
+        
+      - name: Create Changelog
+        run: |
+          npm run changelog
+          git add CHANGELOG.md
+          
+      - name: Commit Changes
+        run: git commit -m "Bumped Version to $(npm run version --silent)"
           
       - name: Publish Version
         uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc
