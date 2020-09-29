@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       newversion:
-        description: 'Semantic Version Bump Type (major minor patch)'
+        description: 'Semantic Version Bump Type (major/minor/patch)'
         required: true
 
 env:
@@ -33,7 +33,7 @@ jobs:
         
       - name: Setup Git
         run: |
-          git config --global user.email "${{ secrets.GITHUB_USERNAME }}@users.noreply.github.com"
+          git config --global user.email "${{ GITHUB_ACTOR }}@users.noreply.github.com"
           git config --global user.name "${{ secrets.GITHUB_USERNAME }}"
       
       - name: Use Node.js ${{ env.node_version }}
@@ -68,7 +68,7 @@ jobs:
           git add CHANGELOG.md
 
       - name: Commit Changes
-        run: git commit -am "Bumped Version to $(npm run version --silent)"
+        run: git commit -am "Bumped Version to ${{ steps.extract_bump_version.outputs.version }}"
 
       - name: Push Branch & Merge
         run: |
@@ -78,8 +78,6 @@ jobs:
           git push
           
       - name: Publish Version
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           npm publish
