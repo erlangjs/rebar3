@@ -53,9 +53,14 @@ jobs:
       
       - name: Bump Version ${{ github.event.inputs.newversion }}
         run: npm version ${{ github.event.inputs.newversion }}
+        
+      - name: Extract Bump Version
+        shell: bash
+        run: echo "##[set-output name=version;]$(echo $(npm run version --silent))"
+        id: extract_bump_version
   
-      - name: Create Branch
-        run: git checkout -b release-$(npm run version --silent)
+      - name: Create Branch release-${{ steps.extract_bump_version.outputs.version }}
+        run: git checkout -b release-${{ steps.extract_bump_version.outputs.version }}
         
       - name: Create Changelog
         run: |
@@ -68,6 +73,12 @@ jobs:
       - name: Tag Version
         run: git tag -a v$(npm run version --silent) -m "Version $(npm run version --silent)"
 
+      - name: Push Branch & Merge
+        run: |
+          git push
+          git checkout ${{ steps.extract_branch.outputs.branch }}
+          git merge release-${{ steps.extract_bump_version.outputs.version }}
+          
       - name: Publish Version
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
