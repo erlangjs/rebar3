@@ -25,7 +25,8 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       
-      - name: Checkout "${{ steps.extract_branch.outputs.branch }}"
+      - name: Checkout ${{ steps.extract_branch.outputs.branch }}
+        run: git checkout ${{ steps.extract_branch.outputs.branch }}
         
       - name: Initialize Submodules
         run: git submodule update --init
