@@ -1,5 +1,5 @@
+name: Version & Publish
 
-name: master
 on:
   workflow_dispatch:
     inputs:
