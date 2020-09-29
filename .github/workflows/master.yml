@@ -69,10 +69,6 @@ jobs:
 
       - name: Commit Changes
         run: git commit -m "Bumped Version to $(npm run version --silent)"
-        
-      - name: Tag Version
-        run: |
-          git tag -a v${{ steps.extract_bump_version.outputs.version }} -m "Version ${{ steps.extract_bump_version.outputs.version }}"
 
       - name: Push Branch & Merge
         run: |
