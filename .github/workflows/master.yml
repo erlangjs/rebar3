@@ -72,7 +72,6 @@ jobs:
         
       - name: Tag Version
         run: |
-          git fetch --tags
           git tag -a v${{ steps.extract_bump_version.outputs.version }} -m "Version ${{ steps.extract_bump_version.outputs.version }}"
 
       - name: Push Branch & Merge
