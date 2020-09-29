@@ -79,6 +79,7 @@ jobs:
           git push
           git checkout ${{ steps.extract_branch.outputs.branch }}
           git merge release-${{ steps.extract_bump_version.outputs.version }}
+          git push
           
       - name: Publish Version
         env:
