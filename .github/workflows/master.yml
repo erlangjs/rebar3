@@ -72,7 +72,7 @@ jobs:
 
       - name: Push Branch & Merge
         run: |
-          git push
+          git push --set-upstream origin release-${{ steps.extract_bump_version.outputs.version }}
           git checkout ${{ steps.extract_branch.outputs.branch }}
           git merge release-${{ steps.extract_bump_version.outputs.version }}
           git push
