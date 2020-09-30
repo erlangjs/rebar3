@@ -30,6 +30,9 @@ jobs:
         
       - name: Initialize Submodules
         run: git submodule update --init
+      
+      - name: Log
+        run: ls -la rebar3
         
       - name: Setup Git
         run: |
@@ -53,7 +56,13 @@ jobs:
 
       - name: Test
         run: npm run test
-      
+
+      - name: Upload Package Artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: package
+          path: .
+
       - name: Bump Version ${{ github.event.inputs.newversion }}
         run: npm version ${{ github.event.inputs.newversion }} -m "Bumped Version to %s (${{ github.event.inputs.newversion }})"
         
