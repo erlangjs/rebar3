@@ -68,7 +68,7 @@ jobs:
           git add CHANGELOG.md
 
       - name: Commit Changes
-        run: git commit -am "Bumped Version to ${{ steps.extract_bump_version.outputs.version }}"
+        run: git commit -am "Bumped Version to ${{ steps.extract_bump_version.outputs.version }} (${{ github.event.inputs.newversion }})"
 
       - name: Push new Branch release-${{ steps.extract_bump_version.outputs.version }}
         uses: ad-m/github-push-action@master
