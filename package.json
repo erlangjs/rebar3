@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "shelljs": "^0.8.4" 
-  }
+  },
   "devDependencies": {
     "auto-changelog": "^1.16.2",
     "gh-release": "^3.5.0"
