@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "./build.sh",
-    "prepublishOnly": "git push --follow-tags && gh-release -y",
     "version": "echo $npm_package_version",
     "changelog": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:'",
     "test": "echo \"Error: no test specified\" && exit 1"
