@@ -1,1 +1,38 @@
+name: Test
 
+on:
+  push:
+    branches:
+      - master
+  
+  
+env:
+  node_version: 14
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    env:
+      CONFIGURATION: prod
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        
+      - name: Initialize Submodules
+        run: git submodule update --init
+      
+      - name: Use Node.js ${{ env.node_version }}
+        uses: actions/setup-node@v2.1.1
+        with:
+          node-version: ${{ env.node_version }}
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Install Packages
+        run: npm i
+        
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
