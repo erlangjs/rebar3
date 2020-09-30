@@ -70,12 +70,20 @@ jobs:
       - name: Commit Changes
         run: git commit -am "Bumped Version to ${{ steps.extract_bump_version.outputs.version }}"
 
-      - name: Push Branch & Merge
+      - name: Push new Branch release-${{ steps.extract_bump_version.outputs.version }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge Branch release-${{ steps.extract_bump_version.outputs.version }} into ${{ steps.extract_branch.outputs.branch }}
         run: |
-          git push --set-upstream origin release-${{ steps.extract_bump_version.outputs.version }}
           git checkout ${{ steps.extract_branch.outputs.branch }}
           git merge release-${{ steps.extract_bump_version.outputs.version }}
-          git push
+          
+      - name: Push Branch ${{ steps.extract_branch.outputs.branch }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Publish Version
         run: |
