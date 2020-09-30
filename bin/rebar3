@@ -1,0 +1,7 @@
+#! /usr/bin/env node
+
+const shell = require("shelljs");
+
+shell.exec(`rebar3/${process.argv.join(' ')}`);
+
+console.log(process.argv);
