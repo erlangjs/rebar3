@@ -20,8 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         
-      - name: Extract Branch Name
-        shell: bash
+      - shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       
@@ -44,45 +43,50 @@ jobs:
           
       - name: Install Packages
         run: |
-          npm i
+          npm install
           git add package*.json
-          #git commit -am "Updated Packages" || true
         
       - name: Build
         run: |
           npm run build
           git add dist/
-          #git commit -am "Updated Packages" || true
 
       - name: Test
         run: npm run test
 
-      - name: Bump Version ${{ github.event.inputs.newversion }}
-        run: npm version ${{ github.event.inputs.newversion }} -m "Bumped Version to %s (${{ github.event.inputs.newversion }})"
+      - name: Bump Version
+        run: |
+          npm version ${{ github.event.inputs.newversion }} \
+          --no-git-tag-version
         
-      - name: Extract Bump Version
-        shell: bash
+      - shell: bash
         run: echo "##[set-output name=version;]$(echo $(npm run version --silent))"
         id: extract_bump_version
   
-      - name: Create Branch release-${{ steps.extract_bump_version.outputs.version }}
+      - name: Create Release Branch
         run: git checkout -b release-${{ steps.extract_bump_version.outputs.version }}
         
       - name: Create Changelog
-        run: npm run changelog
+        run: |
+          npm run changelog
+          git add CHANGELOG.md
 
       - name: Commit Changes
         run: |
-          git add CHANGELOG.md
-          git commit -am "Updated Changelog ${{ steps.extract_bump_version.outputs.version }} (${{ github.event.inputs.newversion }})"
+          git commit -am "Bumped Version to ${{ steps.extract_bump_version.outputs.version }} (${{ github.event.inputs.newversion }})"
+          
+      - name: Tag Version
+        run: |
+          git tag -a v${{ steps.extract_bump_version.outputs.version }} \
+          -m "Version ${{ steps.extract_bump_version.outputs.version }} (${{ github.event.inputs.newversion }})"
 
-      - name: Push new Branch release-${{ steps.extract_bump_version.outputs.version }}
+      - name: Push Release Branch
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: release-${{ steps.extract_bump_version.outputs.version }}
 
-      - name: Merge Branch release-${{ steps.extract_bump_version.outputs.version }} into ${{ steps.extract_branch.outputs.branch }}
+      - name: Merge Branches
         run: |
           git checkout ${{ steps.extract_branch.outputs.branch }}
           git merge release-${{ steps.extract_bump_version.outputs.version }}
@@ -93,7 +97,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.extract_branch.outputs.branch }}
           
-      - name: Publish ${{ steps.extract_bump_version.outputs.version }} to NPM
+      - name: Publish ${{ steps.extract_bump_version.outputs.version }} to Npm Package
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
