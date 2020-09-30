@@ -49,6 +49,7 @@ jobs:
       - name: Build
         run: |
           npm run build
+          git add rebar3/
 
       - name: Test
         run: npm run test
