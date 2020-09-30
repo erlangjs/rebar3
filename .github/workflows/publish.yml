@@ -49,7 +49,13 @@ jobs:
       - name: Build
         run: |
           npm run build
-          git add rebar3/*
+          mkdir rebar3_tmp
+          mv rebar3 rebar3_tmp
+          git submodule deinit rebar3
+          git rm --cached rebar3
+          mv rebar3_tmp rebar3
+          rm -rf rebar3_tmp
+          git add rebar3
           
       - name: Log
         run: |
