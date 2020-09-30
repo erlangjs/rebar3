@@ -85,6 +85,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: release-${{ steps.extract_bump_version.outputs.version }}
+          tags: true
 
       - name: Merge Branches
         run: |
@@ -96,8 +97,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.extract_branch.outputs.branch }}
+          tags: true
           
-      - name: Publish ${{ steps.extract_bump_version.outputs.version }} to Npm Package
+      - name: Publish to Npm Registry
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
