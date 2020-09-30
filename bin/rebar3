@@ -2,6 +2,6 @@
 
 const shell = require("shelljs");
 
-shell.exec(`binary/rebar3 ${(process.argv).join(' ').slice(1)}`);
+shell.exec(`./binary/rebar3 ${(process.argv).join(' ').slice(1)}`);
 
 console.log(process.argv);
