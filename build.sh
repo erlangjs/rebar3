@@ -8,7 +8,7 @@ cd $REBAR
 
 cd ..
 
-mkdir -p binary
-mv $REBAR/* binary
+mkdir -p dist
+mv $REBAR/* dist
 
 echo "📦✨ Installed rebar3!"
