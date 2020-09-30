@@ -63,12 +63,12 @@ jobs:
         run: git checkout -b release-${{ steps.extract_bump_version.outputs.version }}
         
       - name: Create Changelog
-        run: |
-          npm run changelog
-          git add CHANGELOG.md
+        run: npm run changelog
 
       - name: Commit Changes
-        run: git commit -am "Bumped Version to ${{ steps.extract_bump_version.outputs.version }} (${{ github.event.inputs.newversion }})"
+        run: |
+          git add -A
+          git commit -am "Bumped Version to ${{ steps.extract_bump_version.outputs.version }} (${{ github.event.inputs.newversion }})"
 
       - name: Push new Branch release-${{ steps.extract_bump_version.outputs.version }}
         uses: ad-m/github-push-action@master
