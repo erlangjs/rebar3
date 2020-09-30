@@ -11,7 +11,7 @@
     "test": "node bin/rebar3.js"
   },
   "bin": {
-    "rebar3": "bin/rebar3.js"
+    "rebar3": "bin/rebar3"
   },
   "author": "Robin Röper <rr@linux.com>",
   "license": "ISC",
