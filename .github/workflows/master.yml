@@ -74,6 +74,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release-${{ steps.extract_bump_version.outputs.version }}
 
       - name: Merge Branch release-${{ steps.extract_bump_version.outputs.version }} into ${{ steps.extract_branch.outputs.branch }}
         run: |
@@ -84,6 +85,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.extract_branch.outputs.branch }}
           
       - name: Publish Version
         run: |
