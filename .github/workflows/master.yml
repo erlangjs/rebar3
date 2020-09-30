@@ -43,7 +43,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           
       - name: Install Packages
-        run: npm i
+        run: |
+          npm i
+          git add package*.json
+          git commit -am "Updated Packages"
         
       - name: Build
         run: npm run build
@@ -52,7 +55,7 @@ jobs:
         run: npm run test
       
       - name: Bump Version ${{ github.event.inputs.newversion }}
-        run: npm version ${{ github.event.inputs.newversion }}
+        run: npm version ${{ github.event.inputs.newversion }} -m "Bumped Version to %s (${{ github.event.inputs.newversion }})"
         
       - name: Extract Bump Version
         shell: bash
@@ -67,8 +70,8 @@ jobs:
 
       - name: Commit Changes
         run: |
-          git add -A
-          git commit -am "Bumped Version to ${{ steps.extract_bump_version.outputs.version }} (${{ github.event.inputs.newversion }})"
+          git add CHANGELOG.md
+          git commit -am "Updated Changelog ${{ steps.extract_bump_version.outputs.version }} (${{ github.event.inputs.newversion }})"
 
       - name: Push new Branch release-${{ steps.extract_bump_version.outputs.version }}
         uses: ad-m/github-push-action@master
