@@ -48,8 +48,8 @@ jobs:
       - name: Build
         run: npm run build
 
-#      - name: Test
-#        run: npm run test
+      - name: Test
+        run: npm run test
       
       - name: Bump Version ${{ github.event.inputs.newversion }}
         run: npm version ${{ github.event.inputs.newversion }}
