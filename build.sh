@@ -9,6 +9,6 @@ cd $REBAR
 cd ..
 
 mkdir -p binary
-mv $REBAR/rebar3 binary
+mv $REBAR/* binary
 
 echo "📦✨ Installed rebar3!"
