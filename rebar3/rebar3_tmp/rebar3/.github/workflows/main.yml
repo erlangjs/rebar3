@@ -1,0 +1,55 @@
+name: Common Test
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  linux:
+    name: Test on OTP ${{ matrix.otp_version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        otp_version: [19, 20, 21, 22, 23]
+        os: [ubuntu-latest]
+
+    container:
+      image: erlang:${{ matrix.otp_version }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Compile
+      run: ./bootstrap
+    - name: CT tests
+      run: ./rebar3 ct
+
+  macos:
+    name: Test on MacOS
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Erlang
+      run: brew install erlang
+    - name: Compile
+      run: ./bootstrap
+    - name: CT tests
+      run: ./rebar3 ct
+
+  windows:
+    name: Test on Windows
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Erlang
+      run: choco install erlang
+    - name: Compile
+      run: .\bootstrap.ps1
+    - name: CT tests
+      run: .\rebar3.ps1 ct
