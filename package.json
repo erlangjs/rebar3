@@ -10,6 +10,9 @@
     "changelog": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:'",
     "test": "node bin/rebar3.js"
   },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "bin": {
     "rebar3": "bin/rebar3"
   },
