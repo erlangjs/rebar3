@@ -15,7 +15,7 @@
   "author": "Robin Röper <rr@linux.com>",
   "license": "ISC",
   "dependencies": {
-    "shelljs": "^0.8.4" 
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "auto-changelog": "^1.16.2",
