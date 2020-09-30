@@ -46,7 +46,7 @@ jobs:
         run: |
           npm i
           git add package*.json
-          git commit -am "Updated Packages"
+          git commit -am "Updated Packages" || true
         
       - name: Build
         run: npm run build
