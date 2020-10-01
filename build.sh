@@ -6,4 +6,7 @@ cd $REBAR
 ./bootstrap
 ./rebar3 local install
 
-echo "📦✨ Build rebar3!"
+chmod +x rebar3
+gzip rebar3
+
+echo "📦✨ Build & Compressed Rebar3!"
