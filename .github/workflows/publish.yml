@@ -48,13 +48,21 @@ jobs:
         
       - name: Build
         run: |
+          echo "Build"
           npm run build
+          echo "mkdir"
           mkdir rebar3_tmp
+          echo "move"
           mv rebar3/* rebar3_tmp
+          echo "submodule deinit"
           git submodule deinit rebar3
+          echo "git rm"
           git rm --cached rebar3
+          echo "mv back"
           mv rebar3_tmp/* rebar3
+          echo "rm rf"
           rm -rf rebar3_tmp
+          echo "git add"
           git add rebar3
           
       - name: Log
