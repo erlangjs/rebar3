@@ -55,7 +55,7 @@ jobs:
           echo "move"
           mv rebar3/* rebar3_tmp
           echo "submodule deinit"
-          git submodule deinit --cached rebar3
+          git submodule deinit --force rebar3
           echo "git rm"
           git rm --cached rebar3
           echo "mv back"
