@@ -49,14 +49,6 @@ jobs:
       - name: Build
         run: |
           npm run build
-          touch rebar3/example.txt
-          echo "This is a Example!" > rebar3/example.txt
-          chmod +x rebar3/rebar3
-          gzip -k rebar3/rebar3
-          
-      - name: Log
-        run: |
-          ls -la rebar3
 
       - name: Test
         run: npm run test
