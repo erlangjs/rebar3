@@ -6,4 +6,4 @@ cd $REBAR
 ./bootstrap
 ./rebar3 local install
 
-echo "📦✨ Installed rebar3!"
+echo "📦✨ Build rebar3!"
