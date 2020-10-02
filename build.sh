@@ -7,6 +7,6 @@ cd $REBAR
 ./rebar3 local install
 
 chmod +x rebar3
-gzip rebar3
+# gzip rebar3
 
-echo "📦✨ Build & Compressed Rebar3!"
+echo "\n📦✨ Successfully build Rebar3! http://www.rebar3.org/\n"
