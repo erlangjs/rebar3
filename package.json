@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postInstall": "(npm run decompress || true) && (npm link || true)",
+    "postinstall": "(npm run decompress || true) && (npm link || true)",
     "decompress": "gzip -d rebar3/rebar3.gz",
     "build": "./build.sh",
     "version": "echo $npm_package_version",
