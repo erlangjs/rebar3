@@ -4,6 +4,6 @@ const shell = require("shelljs");
 const argv = process.argv;
 
 const args = argv.slice(2).join(' ');
-const path = `${(argv[1].split('/').slice(0, argv[1].split('/').length - 2)).join('/')}/../rebar3`;
+const path = `${(argv[1].split('/').slice(0, argv[1].split('/').length - 1)).join('/')}/../rebar3`;
 
 shell.exec(`${path}/rebar3 ${args}`);
