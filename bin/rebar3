@@ -1,6 +1,9 @@
 #! /usr/bin/env node
 
 const shell = require("shelljs");
-const args = (process.argv).splice(0, 2).join(' ');
+const argv = process.argv;
 
-shell.exec(`node_modules/rebar3/rebar3/rebar3 ${process.argv}`);
+const args = argv.slice(0, 2).join(' ');
+const path = `${argv[1].split('/').pop().join('/')}/../rebar3`;
+
+shell.exec(`${path}/rebar3 ${args}`);
