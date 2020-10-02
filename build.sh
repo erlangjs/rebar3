@@ -9,4 +9,4 @@ cd $REBAR
 chmod +x rebar3
 # gzip rebar3
 
-echo -e "\n📦✨ Successfully build Rebar3! http://www.rebar3.org/\n"
+echo -e "\n📦✨ Successfully build Rebar3! http://www.rebar3.org/"
