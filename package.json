@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm run build && (npm link || true)",
+    "postinstall": "npm run build",
     "build": "./build.sh",
     "version": "echo $npm_package_version",
     "changelog": "auto-changelog -p --template keepachangelog auto-changelog --breaking-pattern 'BREAKING CHANGE:'",
-    "test": "node bin/rebar3"
+    "test": "node bin/rebar3 --version"
   },
   "engines": {
     "node": ">=12.0.0"
