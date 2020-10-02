@@ -1,4 +1,4 @@
-name: Version & Publish
+name: Publish
 
 on:
   workflow_dispatch:
@@ -11,8 +11,8 @@ env:
   node_version: 14
 
 jobs:
-  build:
-    name: build
+  publish:
+    name: publish
     runs-on: ubuntu-latest
     env:
       CONFIGURATION: prod
