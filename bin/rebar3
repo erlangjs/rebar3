@@ -1,0 +1,7 @@
+#! /usr/bin/env node
+
+const shell = require("shelljs");
+const args = (process.argv).splice(0, 2).join(' ');
+
+# run
+shell.exec(`node_modules/rebar3/rebar3/rebar3 ${process.argv}`);
