@@ -32,14 +32,14 @@ In your `package.json` (Example):
 }
 ```
 
-Try it:
+### Try it:
 ```shell
 npm run example
 
 # Output: rebar X.X.X on Erlang/OTP XX Erts XX.X
 ```
 
-Or use the (optional) link
+#### Or use the (optional) link
 ```shell
 npm run rebar3 -- --version
 
