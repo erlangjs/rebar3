@@ -9,5 +9,5 @@ const binary = 'rebar3';
 
 if (shell.exec(`${path}/${binary} ${args}`).code !== 0) {
   shell.echo(`Error: Rebar3 Command "${binary} ${args}" Failed`);
-  exit(1);
+  process.exit(1);
 }
