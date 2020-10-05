@@ -5,7 +5,7 @@ Node.js Rebar3 CLI
 2. [Getting Started](https://github.com/erlang/rebar3#getting-started)
 3. [Demos]()
 
-## What is Rebar3
+## What is Rebar3?
 Read full Documentation here [erlang/rebar3](https://github.com/erlang/rebar3)
 
 ## Getting Started
