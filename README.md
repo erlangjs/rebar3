@@ -1,9 +1,9 @@
 # [Rebar3](https://repl.it/@robinrpr/rebar3)
 Node.js Rebar3 CLI
 
-1. [What is Rebar3?](https://github.com/erlang/rebar3#what-is-rebar3)
-2. [Getting Started](https://github.com/erlang/rebar3#getting-started)
-3. [Demos]()
+1. [What is Rebar3?](https://github.com/erlangjs/rebar3#what-is-rebar3)
+2. [Getting Started](https://github.com/erlangjs/rebar3#getting-started)
+3. [Demos](https://github.com/erlangjs/rebar3#demos)
 
 ## What is Rebar3?
 Read full Documentation here [erlang/rebar3](https://github.com/erlang/rebar3)
