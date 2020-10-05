@@ -1,8 +1,9 @@
-# Rebar3
+# [Rebar3](https://repl.it/@robinrpr/rebar3)
 Node.js Rebar3 CLI
 
 1. [What is Rebar3?](https://github.com/erlang/rebar3#what-is-rebar3)
 2. [Getting Started](https://github.com/erlang/rebar3#getting-started)
+3. [Demos]()
 
 ## What is Rebar3
 Read full Documentation here [erlang/rebar3](https://github.com/erlang/rebar3)
@@ -45,3 +46,6 @@ npm run rebar3 -- --version
 
 # Output: rebar X.X.X on Erlang/OTP XX Erts XX.X
 ```
+
+## Demos
+[Open Example Project on Repl.it](https://repl.it/@robinrpr/rebar3-example)
