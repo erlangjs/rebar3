@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "rebar3": "bin/rebar3",
     "postinstall": "npm run build && (npm run test || true)",
     "build": "./build.sh",
     "version": "echo $npm_package_version",
