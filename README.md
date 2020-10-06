@@ -28,7 +28,7 @@ In your `package.json` (Example):
   "author": "see AUTHORS",
   "license": "ISC",
   "dependencies": {
-    ...
+     "rebar3": "*"
   }
 }
 ```
